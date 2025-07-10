@@ -12,7 +12,6 @@ pretraining/logs/
 # FINE-TUNING AND EVALUATION
 # CASIA-WebFace dataset
 CASIA-WebFace/casia_webface/
-
 # Fine-tuned models
 CASIA-WebFace/finetune_evaluation_casia_webface/results_inception_v3/best_model_inception_v3_100.pth
 CASIA-WebFace/finetune_evaluation_casia_webface/results_resnet50/best_model_resnet50_100.pth
