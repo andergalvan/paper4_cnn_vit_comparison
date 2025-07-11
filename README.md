@@ -37,7 +37,7 @@ Excluded content:
 
 #### Dataset Download – VGGFace2
 To download and prepare the VGGFace2 dataset for pre-training:
-1. Download the dataset from Academic Torrents using the following link: https://academictorrents.com/download/535113b8395832f09121bc53ac85d7bc8ef6fa5b.torrent
+1. Download the dataset from Academic Torrents using this [torrent link](https://academictorrents.com/download/535113b8395832f09121bc53ac85d7bc8ef6fa5b.torrent)
 2. After downloading and extracting the torrent, you will get a folder named `/VGG-Face2/data/` containing the following four files:
    - `vggface2_train.tar.gz`
    - `vggface2_test.tar.gz`
@@ -77,7 +77,7 @@ Excluded content:
 
 #### Dataset Download and Preparation – CASIA-WebFace
 To download and prepare the CASIA-WebFace dataset:
-1. Download the dataset ZIP file from: https://drive.google.com/file/d/1KxNCrXzln0lal3N4JiYl9cFOIhT78y1l/view
+1. Download the dataset ZIP file from this [Google Drive link](https://drive.google.com/file/d/1KxNCrXzln0lal3N4JiYl9cFOIhT78y1l/view)
 2. Move the downloaded ZIP file to: `CASIA-WebFace/setup_casia_webface/`
 3. Navigate to that directory: `cd CASIA-WebFace/setup_casia_webface/`
 4. Unzip the dataset: `unzip faces_webface_112x112.zip`
@@ -88,4 +88,10 @@ To download and prepare the CASIA-WebFace dataset:
 9. Run MTCNN-based face cropping: `python3 mtcnn.py` (this creates: `CASIA-WebFace/casia_webface/casia_webface_imgs_mtcnn`)
 10. Create train, validation, CSR and OSR evaluation splits: `python3 split_known_unknown_dataset.py` (this creates: `CASIA-WebFace/casia_webface/casia_webface_imgs_mtcnn_ordered`)
 
-⚠️ **NOTE**: It may be necessary to modify paths in some files if you wish to replicate the work described in the article.
+## 📝 Acknowledgement
+
+Some parts of the dataset preparation are based on code from [Open-Set-Recognition](https://github.com/ma-xu/Open-Set-Recognition), and the CASIA-WebFace dataset is referenced from the [InsightFace dataset list](https://github.com/deepinsight/insightface/blob/master/recognition/_datasets_/README.md).
+
+## ⚠️ Important Note
+
+It may be necessary to modify paths in some files if you wish to replicate the work described in the article.
