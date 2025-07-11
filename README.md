@@ -8,7 +8,7 @@
 1. **Create a general virtual environment** using Python 3.10.12 (referred to as `ENV_GENERAL`)
 2. **Install the required dependencies**: `pip install -r requirements.txt`. This is the main environment used for the pre-training, fine-tuning, and evaluation phases
 
-⚠️ To download and prepare the images from the VGGFace2 and CASIA-WebFace datasets, two additional virtual environments are required (`ENV_VGGFACE2` and `ENV_CASIA`) to keep dependencies isolated.
+⚠️ To download and prepare the images from the CASIA-WebFace dataset, an additional virtual environment is required (`ENV_CASIA`) to keep dependencies isolated
 
 ---
 
@@ -24,7 +24,6 @@ Contents include:
 - `main_pretraining.py` and `utils.py`: Python scripts that handle the full pre-training process
 - `pretrain_all_models.sh`: Shell script to automate pre-training for all models in the paper
 - `analysis_vggface2/`: Exploratory analysis of the VGGFace2 dataset
-- `setup_vggface2/`: Contains utilities and scripts necessary to download and prepare the VGGFace2 dataset
 
 Excluded content: 
 
@@ -38,15 +37,20 @@ Excluded content:
 
 #### Dataset Download – VGGFace2
 To download and prepare the VGGFace2 dataset for pre-training:
-1. Download the dataset ZIP file from: https://drive.google.com/file/d/1dyVQ7X3d28eAcjV3s3o0MT-HyODp_v3R/view
-2. Move the downloaded ZIP file to: `/pretraining/setup_vggface2/`
-3. Change to that directory: `cd pretraining/setup_vggface2/`
-4. Unzip the dataset: `unzip faces_vgg_112x112.zip`
-5. Create a separate Python 3.10.12 virtual environment dedicated exclusively to dataset preparation (`ENV_VGGFACE2`), activate it, and install the required packages: `pip install -r requirements.txt`
-6. Convert the .rec dataset files to individual image files by running: `python3 rec_to_imgs.py`
-7. Deactivate the `ENV_VGGFACE2` environment after completion
+1. Download the dataset from Academic Torrents using the following link: https://academictorrents.com/download/535113b8395832f09121bc53ac85d7bc8ef6fa5b.torrent
+2. After downloading and extracting the torrent, you will get a folder named `/VGG-Face2/data/` containing the following four files:
+   - `vggface2_train.tar.gz`
+   - `vggface2_test.tar.gz`
+   - `train_list.txt`
+   - `test_list.txt`
+3. Move all four files to `/pretraining/vggface2/`
+4. Navigate to that directory: `cd /pretraining/vggface2/`
+5. Extract the image archives:
+   - `tar -xvzf vggface2_train.tar.gz`
+   - `tar -xvzf vggface2_test.tar.gz`
+  
+After extraction, the VGGFace2 dataset will be fully unpacked and organized within `/pretraining/vggface2/`, along with the corresponding train/test list files. The dataset is now ready for use in the pre-training stage.
 
-After executing the last script, a new folder will be created at: `/pretraining/vggface2/`. This directory contains the final, processed VGGFace2 image dataset, properly structured and ready for use in model pre-training.
 
 ### Fine-tuning and Evaluation (CASIA-WebFace)
 
@@ -75,7 +79,7 @@ Excluded content:
 To download and prepare the CASIA-WebFace dataset:
 1. Download the dataset ZIP file from: https://drive.google.com/file/d/1KxNCrXzln0lal3N4JiYl9cFOIhT78y1l/view
 2. Move the downloaded ZIP file to: `CASIA-WebFace/setup_casia_webface/`
-3. Change to that directory: `cd CASIA-WebFace/setup_casia_webface/`
+3. Navigate to that directory: `cd CASIA-WebFace/setup_casia_webface/`
 4. Unzip the dataset: `unzip faces_webface_112x112.zip`
 5. Create a separate Python 3.10.12 virtual environment dedicated exclusively to dataset preparation (`ENV_CASIA`), activate it, and install the required packages: `pip install -r requirements.txt`
 6. Convert the .rec dataset files to individual image files by running: `python3 rec_to_imgs.py` (this creates the original dataset in: `CASIA-WebFace/casia_webface/casia_webface`)
