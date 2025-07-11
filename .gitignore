@@ -6,9 +6,6 @@ pretraining/vggface2/
 pretraining/checkpoints/
 # Logs of the pre-trained models
 pretraining/logs/
-# ======================================
-
-
 
 # ======================================
 # FINE-TUNING AND EVALUATION
@@ -21,4 +18,3 @@ CASIA-WebFace/finetune_evaluation_casia_webface/results_densenet201/best_model_d
 CASIA-WebFace/finetune_evaluation_casia_webface/results_mobilenet_v3_large/best_model_mobilenet_v3_large_100.pth
 CASIA-WebFace/finetune_evaluation_casia_webface/results_efficientnet_b0/best_model_efficientnet_b0_100.pth
 CASIA-WebFace/finetune_evaluation_casia_webface/results_vit_b_16/best_model_vit_b_16_100.pth
-# ======================================
