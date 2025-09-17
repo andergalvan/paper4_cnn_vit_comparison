@@ -54,13 +54,15 @@ After extraction, the VGGFace2 dataset will be fully unpacked and organized with
 
 ### Fine-tuning and Evaluation (CASIA-WebFace)
 
-The `CASIA-WebFace/` directory contains everything related to the fine-tuning and evaluation phases of the models using the CASIA-WebFace dataset.
+The `finetuning_evaluation/` directory contains everything related to the fine-tuning and evaluation phases of the models using the CASIA-WebFace dataset.
 
 Contents include:
-- `main_finetuning.py`: Performs model fine-tuning for all models
-- `main_evaluation.py`: Executes evaluation in both Closed-Set Recognition (CSR) and Open-Set Recognition (OSR) scenarios
-- `.log` files: Log outputs from script executions
+- `main_finetuning.py`: Performs model fine-tuning for all models (output `output_finetuning.log`)
+- `main_evaluation_openmax.py`: Executes evaluation in both Closed-Set Recognition (CSR) and Open-Set Recognition (OSR) scenarios using OpenMax (output `output_evaluation_openmax.log`)
+- `main_stadistics.py`: Calculate the statistics (mean, std and confidence interval 95%) of the results obtained after running `main_evaluation_openmax.py` (output `output_statistics.log`)
+- `main_evaluation_softmax_thresholding.py`: Executes evaluation in both Closed-Set Recognition (CSR) and Open-Set Recognition (OSR) scenarios using SoftMax Thresholding (output `output_evaluation_softmax_thresholding.log`)
 - `setup_casia_webface/`: Contains utilities and scripts necessary to download and prepare the CASIA-WebFace dataset
+- There are several other files beginning with `main_` that have been used to generate certain images in the paper: `main_computation.py` (Figure 10), `main_error_analysis.py` (Figures 7 and 8), `main_metrics_display.py` (Figure 9), `main_training_figures.py` (Figure 6)
 
 Excluded content:
   - `casia_webface/`:
@@ -71,22 +73,22 @@ Excluded content:
       - `validation/`
       - `close_test/` (CSR scenario)
       - `open_test/` (OSR scenario)
-- `finetune_evaluation_casia_webface/`: Stores fine-tuning results, metrics, and best model checkpoints
+- `finetune_evaluation_casia_webface/`: Stores fine-tuning and evaluation results. Only the fine-tuned models from different runs are excluded.
 
-⚠️ Due to their large size, the `casia_webface/` directory and fine-tuned models in `finetune_evaluation_casia_webface/` are not included in this repository. However, the fine-tuned models can be obtained by executing the `main_finetuning.py` script.
+⚠️ Due to their large size, the `casia_webface/` directory and fine-tuned models in `results/` are not included in this repository. However, the fine-tuned models can be obtained by executing the `main_finetuning.py` script.
 
 #### Dataset Download and Preparation – CASIA-WebFace
 To download and prepare the CASIA-WebFace dataset:
 1. Download the dataset ZIP file from this [Google Drive link](https://drive.google.com/file/d/1KxNCrXzln0lal3N4JiYl9cFOIhT78y1l/view)
-2. Move the downloaded ZIP file to: `CASIA-WebFace/setup_casia_webface/`
-3. Navigate to that directory: `cd CASIA-WebFace/setup_casia_webface/`
+2. Move the downloaded ZIP file to: `finetuning_evaluation/setup_casia_webface/`
+3. Navigate to that directory: `cd finetuning_evaluation/setup_casia_webface/`
 4. Unzip the dataset: `unzip faces_webface_112x112.zip`
 5. Create a separate Python 3.10.12 virtual environment dedicated exclusively to dataset preparation (`ENV_CASIA`), activate it, and install the required packages: `pip install -r requirements.txt`
-6. Convert the .rec dataset files to individual image files by running: `python3 rec_to_imgs.py` (this creates the original dataset in: `CASIA-WebFace/casia_webface/casia_webface`)
+6. Convert the .rec dataset files to individual image files by running: `python3 rec_to_imgs.py` (this creates the original dataset in: `finetuning_evaluation/casia_webface/casia_webface`)
 7. Deactivate the `ENV_CASIA` environment after completion
 8. Activate the general environment (`ENV_GENERAL`)
-9. Run MTCNN-based face cropping: `python3 mtcnn.py` (this creates: `CASIA-WebFace/casia_webface/casia_webface_imgs_mtcnn`)
-10. Create train, validation, CSR and OSR evaluation splits: `python3 split_known_unknown_dataset.py` (this creates: `CASIA-WebFace/casia_webface/casia_webface_imgs_mtcnn_ordered`)
+9. Run MTCNN-based face cropping: `python3 mtcnn.py` (this creates: `finetuning_evaluation/casia_webface/casia_webface_imgs_mtcnn`)
+10. Create train, validation, CSR and OSR evaluation splits: `python3 split_known_unknown_dataset.py` (this creates: `finetuning_evaluation/casia_webface/casia_webface_imgs_mtcnn_ordered`)
 
 ## 📝 Acknowledgement
 
