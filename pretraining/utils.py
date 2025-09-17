@@ -110,7 +110,7 @@ def train_one_epoch(model, dataloader, optimizer, criterion, device, scaler, use
 
 def validate(model, dataloader, criterion, device, use_amp):
     
-    """ Validar el modelo durante una época. """
+    """ Validate the model for one epoch. """
     
     model.eval()
     val_loss = 0
@@ -137,7 +137,7 @@ def validate(model, dataloader, criterion, device, use_amp):
     total_tensor = reduce_value(torch.tensor(total, device=device), average=False)
 
     val_loss = reduce_value(torch.tensor(val_loss, device=device),average=False)
-    val_loss = val_loss / total_tensor.float()  # Normaliza la pérdida por el número total de muestras
+    val_loss = val_loss / total_tensor.float()  # Normalise the loss by the total number of samples
     top1_acc = 100. * top1_correct.float() / total_tensor.float()
     top5_acc = 100. * top5_correct.float() / total_tensor.float()
 

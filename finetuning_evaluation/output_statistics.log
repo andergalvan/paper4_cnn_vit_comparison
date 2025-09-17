@@ -1,0 +1,101 @@
+nohup: ignoring input
+
+==== Results for OPENMAX ====
+
+Model: inception_v3
+  Metric: csr_f1, Mean: 89.96, Std: 0.41, 95% CI: [89.67, 90.25]
+  Metric: osr_f1, Mean: 74.39, Std: 14.67, 95% CI: [63.89, 84.88]
+  Metric: osr_fpr, Mean: 36.98, Std: 16.16, 95% CI: [25.42, 48.54]
+  Metric: osr_tnr, Mean: 63.02, Std: 16.16, 95% CI: [51.46, 74.58]
+  Metric: osr_tpr, Mean: 99.70, Std: 0.25, 95% CI: [99.52, 99.88]
+  Metric: osr_fnr, Mean: 0.30, Std: 0.25, 95% CI: [0.12, 0.48]
+
+Model: resnet50
+  Metric: csr_f1, Mean: 91.43, Std: 0.35, 95% CI: [91.18, 91.68]
+  Metric: osr_f1, Mean: 85.96, Std: 3.64, 95% CI: [83.36, 88.57]
+  Metric: osr_fpr, Mean: 22.37, Std: 5.54, 95% CI: [18.40, 26.34]
+  Metric: osr_tnr, Mean: 77.63, Std: 5.54, 95% CI: [73.66, 81.60]
+  Metric: osr_tpr, Mean: 99.23, Std: 0.50, 95% CI: [98.87, 99.59]
+  Metric: osr_fnr, Mean: 0.77, Std: 0.50, 95% CI: [0.41, 1.13]
+
+Model: densenet201
+  Metric: csr_f1, Mean: 93.25, Std: 0.26, 95% CI: [93.06, 93.43]
+  Metric: osr_f1, Mean: 84.78, Std: 5.45, 95% CI: [80.89, 88.68]
+  Metric: osr_fpr, Mean: 24.16, Std: 7.61, 95% CI: [18.72, 29.60]
+  Metric: osr_tnr, Mean: 75.84, Std: 7.61, 95% CI: [70.40, 81.28]
+  Metric: osr_tpr, Mean: 99.45, Std: 0.25, 95% CI: [99.27, 99.63]
+  Metric: osr_fnr, Mean: 0.55, Std: 0.25, 95% CI: [0.37, 0.73]
+
+Model: mobilenet_v3_large
+  Metric: csr_f1, Mean: 88.34, Std: 0.40, 95% CI: [88.05, 88.62]
+  Metric: osr_f1, Mean: 87.32, Std: 0.52, 95% CI: [86.95, 87.69]
+  Metric: osr_fpr, Mean: 15.19, Std: 0.85, 95% CI: [14.58, 15.80]
+  Metric: osr_tnr, Mean: 84.81, Std: 0.85, 95% CI: [84.20, 85.42]
+  Metric: osr_tpr, Mean: 91.97, Std: 1.43, 95% CI: [90.95, 92.99]
+  Metric: osr_fnr, Mean: 8.03, Std: 1.43, 95% CI: [7.01, 9.05]
+
+Model: efficientnet_b0
+  Metric: csr_f1, Mean: 92.44, Std: 0.47, 95% CI: [92.10, 92.77]
+  Metric: osr_f1, Mean: 87.65, Std: 2.94, 95% CI: [85.54, 89.75]
+  Metric: osr_fpr, Mean: 19.35, Std: 4.80, 95% CI: [15.92, 22.78]
+  Metric: osr_tnr, Mean: 80.65, Std: 4.80, 95% CI: [77.22, 84.08]
+  Metric: osr_tpr, Mean: 98.42, Std: 0.83, 95% CI: [97.83, 99.01]
+  Metric: osr_fnr, Mean: 1.58, Std: 0.83, 95% CI: [0.99, 2.17]
+
+Model: vit_b_16
+  Metric: csr_f1, Mean: 93.05, Std: 0.59, 95% CI: [92.63, 93.48]
+  Metric: osr_f1, Mean: 90.50, Std: 0.41, 95% CI: [90.21, 90.80]
+  Metric: osr_fpr, Mean: 15.08, Std: 0.60, 95% CI: [14.65, 15.51]
+  Metric: osr_tnr, Mean: 84.92, Std: 0.60, 95% CI: [84.49, 85.35]
+  Metric: osr_tpr, Mean: 98.50, Std: 0.36, 95% CI: [98.25, 98.75]
+  Metric: osr_fnr, Mean: 1.50, Std: 0.36, 95% CI: [1.25, 1.75]
+
+==== Results for SOFTMAX_THRESHOLDING ====
+
+Model: inception_v3
+  Metric: csr_f1, Mean: 89.96, Std: 0.41, 95% CI: [89.67, 90.25]
+  Metric: osr_f1, Mean: 78.62, Std: 13.61, 95% CI: [68.89, 88.36]
+  Metric: osr_fpr, Mean: 31.49, Std: 16.05, 95% CI: [20.01, 42.97]
+  Metric: osr_tnr, Mean: 68.51, Std: 16.05, 95% CI: [57.03, 79.99]
+  Metric: osr_tpr, Mean: 99.63, Std: 0.32, 95% CI: [99.40, 99.86]
+  Metric: osr_fnr, Mean: 0.37, Std: 0.32, 95% CI: [0.14, 0.60]
+
+Model: resnet50
+  Metric: csr_f1, Mean: 91.43, Std: 0.35, 95% CI: [91.18, 91.68]
+  Metric: osr_f1, Mean: 89.55, Std: 2.32, 95% CI: [87.89, 91.21]
+  Metric: osr_fpr, Mean: 15.97, Std: 4.39, 95% CI: [12.83, 19.11]
+  Metric: osr_tnr, Mean: 84.03, Std: 4.39, 95% CI: [80.89, 87.17]
+  Metric: osr_tpr, Mean: 98.01, Std: 1.13, 95% CI: [97.20, 98.82]
+  Metric: osr_fnr, Mean: 1.99, Std: 1.13, 95% CI: [1.18, 2.80]
+
+Model: densenet201
+  Metric: csr_f1, Mean: 93.25, Std: 0.26, 95% CI: [93.06, 93.43]
+  Metric: osr_f1, Mean: 87.88, Std: 4.95, 95% CI: [84.34, 91.42]
+  Metric: osr_fpr, Mean: 19.22, Std: 7.39, 95% CI: [13.93, 24.51]
+  Metric: osr_tnr, Mean: 80.78, Std: 7.39, 95% CI: [75.49, 86.07]
+  Metric: osr_tpr, Mean: 98.99, Std: 0.46, 95% CI: [98.66, 99.32]
+  Metric: osr_fnr, Mean: 1.01, Std: 0.46, 95% CI: [0.68, 1.34]
+
+Model: mobilenet_v3_large
+  Metric: csr_f1, Mean: 88.34, Std: 0.40, 95% CI: [88.05, 88.62]
+  Metric: osr_f1, Mean: 88.54, Std: 0.48, 95% CI: [88.20, 88.89]
+  Metric: osr_fpr, Mean: 12.45, Std: 0.75, 95% CI: [11.92, 12.98]
+  Metric: osr_tnr, Mean: 87.55, Std: 0.75, 95% CI: [87.02, 88.08]
+  Metric: osr_tpr, Mean: 91.07, Std: 1.33, 95% CI: [90.12, 92.02]
+  Metric: osr_fnr, Mean: 8.93, Std: 1.33, 95% CI: [7.98, 9.88]
+
+Model: efficientnet_b0
+  Metric: csr_f1, Mean: 92.44, Std: 0.47, 95% CI: [92.10, 92.77]
+  Metric: osr_f1, Mean: 89.22, Std: 3.56, 95% CI: [86.68, 91.77]
+  Metric: osr_fpr, Mean: 16.73, Std: 5.85, 95% CI: [12.54, 20.92]
+  Metric: osr_tnr, Mean: 83.27, Std: 5.85, 95% CI: [79.08, 87.46]
+  Metric: osr_tpr, Mean: 98.43, Std: 0.76, 95% CI: [97.88, 98.98]
+  Metric: osr_fnr, Mean: 1.57, Std: 0.76, 95% CI: [1.02, 2.12]
+
+Model: vit_b_16
+  Metric: csr_f1, Mean: 93.05, Std: 0.59, 95% CI: [92.63, 93.48]
+  Metric: osr_f1, Mean: 92.60, Std: 0.38, 95% CI: [92.33, 92.87]
+  Metric: osr_fpr, Mean: 11.22, Std: 0.84, 95% CI: [10.62, 11.82]
+  Metric: osr_tnr, Mean: 88.78, Std: 0.84, 95% CI: [88.18, 89.38]
+  Metric: osr_tpr, Mean: 97.91, Std: 0.56, 95% CI: [97.51, 98.31]
+  Metric: osr_fnr, Mean: 2.09, Std: 0.56, 95% CI: [1.69, 2.49]

@@ -18,9 +18,9 @@ from utils import get_model, train_one_epoch, validate, save_checkpoint, setup_t
 
 # Variable parameters
 parser = argparse.ArgumentParser()
-parser.add_argument('--model_name', type=str, required=True, help="Model name.")
-parser.add_argument('--log_dir', type=str, required=True, help="Where to save the model logs.")
-parser.add_argument('--checkpoint_dir', type=str, required=True, help="Where to save the model checkpoints.")
+parser.add_argument('--model_name', type=str, required=True, help='Model name.')
+parser.add_argument('--log_dir', type=str, required=True, help='Where to save the model logs.')
+parser.add_argument('--checkpoint_dir', type=str, required=True, help='Where to save the model checkpoints.')
 args = parser.parse_args()
 
 # Reproducibility
@@ -32,7 +32,7 @@ torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-# VGGFace2 training set directory
+# Path to the VGGFace2 training dataset
 DATA_DIR = '/home/ubuntu/Paper4_CNN_ViT_Comparison/pretraining/vggface2/train'
 
 # Hyperparameters
@@ -57,7 +57,7 @@ try:
     os.makedirs(args.checkpoint_dir, exist_ok=True)
     writer = setup_tensorboard(args.log_dir) if local_rank == 0 else None
 
-    # Training and validation transformations
+    # Training transformations
     train_transform = transforms.Compose([
         transforms.Resize(224),
         transforms.RandomHorizontalFlip(),
@@ -70,6 +70,7 @@ try:
         transforms.Normalize(mean=[0.5]*3, std=[0.5]*3)
     ])
 
+    # Validation transformations
     val_transform = transforms.Compose([
         transforms.Resize(224),
         transforms.CenterCrop(224),
@@ -77,10 +78,10 @@ try:
         transforms.Normalize(mean=[0.5]*3, std=[0.5]*3)
     ])
 
-    # Load training set
+    # Load training dataset
     full_dataset = datasets.ImageFolder(DATA_DIR)
 
-    # Divide the training set into 95% training and 5% validation subsets
+    # Divide the training dataset into 95% training and 5% validation subsets
     val_size = int(0.05 * len(full_dataset))
     train_size = len(full_dataset) - val_size
     train_subset, val_subset = random_split(full_dataset, [train_size, val_size])
@@ -88,7 +89,7 @@ try:
     # Apply the transformations
     train_subset.dataset.transform = train_transform
     val_subset.dataset.transform = val_transform
-    print(f"[DEBUG 5] DATASET DE ENTRENAMIENTO Y VALIDACIÓN CREADOS")  
+    print(f"[DEBUG 5] TRAINING AND VALIDATION DATASETS CREATED")  
 
     # Creation of the distributed samplers for training and validation
     train_sampler = torch.utils.data.distributed.DistributedSampler(train_subset, shuffle=True, drop_last=True, seed=42)
@@ -100,8 +101,8 @@ try:
 
     # Model initialization
     model = get_model(args.model_name, NUM_CLASSES)
-    print(f"[INFO] MODEL {args.model_name} LOADED.")
-    print("[DEBUG 6] MODELO CREADO") 
+    print(f"[INFO] MODEL {args.model_name} LOADED")
+    print("[DEBUG 6] MODEL CREATED") 
     model = model.to(device)
     model = DDP(model, device_ids=[local_rank], output_device=local_rank)
 
@@ -142,10 +143,10 @@ try:
                 save_path = os.path.join(args.checkpoint_dir, "best_model.pt")
                 checkpoint_data = {'model_state_dict': model.module.state_dict()}
                 save_checkpoint(checkpoint_data, save_path, epoch, optimizer, scheduler=combined_scheduler, scaler=scaler)
-                print(f"[INFO] MEJOR MODELO GUARDADO EN: {save_path}")
+                print(f"[INFO] BEST MODEL SAVED IN: {save_path}")
             else:
                 epochs_no_improve += 1
-                print(f"[INFO] EPOCHS SIN MEJORA: {epochs_no_improve}/{PATIENCE}")
+                print(f"[INFO] EPOCHS WITHOUT IMPROVEMENT: {epochs_no_improve}/{PATIENCE}")
 
             if epochs_no_improve >= PATIENCE:
                 early_stop.fill_(1)   # Signal to stop training
@@ -155,7 +156,7 @@ try:
 
         if early_stop.item() == 1:
             if local_rank == 0:
-                print(f"[INFO] DETENIDO EL ENTRENAMIENTO POR EARLY STOPPING EN LA ÉPOCA {epoch}.")
+                print(f"[INFO] TRAINING SUSPENDED DUE TO EARLY STOPPING IN THE EPOCH {epoch}")
             break
 
         # Writing metrics in TensorBoard
@@ -165,14 +166,14 @@ try:
 
         print(f"\nEPOCH {epoch}/{EPOCHS}")
         print(f"TRAIN LOSS: {train_loss:.4f} | TOP-1: {train_acc:.2f}% | TOP-5: {train_acc_top5:.2f}%")
-        print(f"VAL LOSS:   {val_loss:.4f} | TOP-1: {val_acc:.2f}% | TOP-5: {val_acc_top5:.2f}%")
+        print(f"VAL LOSS: {val_loss:.4f} | TOP-1: {val_acc:.2f}% | TOP-5: {val_acc_top5:.2f}%")
 
         # Checkpoint saving every 5 epochs
         if epoch % 5 == 0 and local_rank == 0:
             save_path = os.path.join(args.checkpoint_dir, f"checkpoint_epoch_{epoch}.pt")
             checkpoint_data = {'model_state_dict': model.module.state_dict()}
             save_checkpoint(checkpoint_data, save_path, epoch, optimizer, scheduler=combined_scheduler, scaler=scaler)
-            print(f"[INFO] CHECKPOINT GUARDADO EN ÉPOCA {epoch}: {save_path}")
+            print(f"[INFO] CHECKPOINT SAVED AT THE EPOCH {epoch}: {save_path}")
 
         # Scheduler update
         combined_scheduler.step()
@@ -180,7 +181,7 @@ try:
     # Closing the TensorBoard writer
     if writer and local_rank == 0:
         writer.close()
-    print("[INFO] ENTRENAMIENTO COMPLETADO.")
+    print("[INFO] TRAINING COMPLETED")
     dist.destroy_process_group()
 
 except Exception as e:
