@@ -73,9 +73,9 @@ Excluded content:
       - `validation/`
       - `close_test/` (CSR scenario)
       - `open_test/` (OSR scenario)
-- `finetune_evaluation_casia_webface/`: Stores fine-tuning and evaluation results. Only the fine-tuned models from different runs are excluded.
+- `results/`: Stores fine-tuning and evaluation results. Only the fine-tuned models from different runs are excluded.
 
-⚠️ Due to their large size, the `casia_webface/` directory and fine-tuned models in `results/` are not included in this repository. However, the fine-tuned models can be obtained by executing the `main_finetuning.py` script.
+⚠️ Due to their large size, the `casia_webface/` directory and the fine-tuned models in `results/` are not included in this repository. However, the fine-tuned models can be obtained by executing the `main_finetuning.py` script.
 
 #### Dataset Download and Preparation – CASIA-WebFace
 To download and prepare the CASIA-WebFace dataset:
